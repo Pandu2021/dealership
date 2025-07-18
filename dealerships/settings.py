@@ -69,6 +69,11 @@ TEMPLATES = [
 ]
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = "/djangoapp/login/"  
+LOGIN_REDIRECT_URL = "/djangoapp/"  
+LOGOUT_REDIRECT_URL = "/djangoapp/" 
+
 WSGI_APPLICATION = 'dealerships.wsgi.application'
 
 

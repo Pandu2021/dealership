@@ -9,22 +9,43 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Best Cars Dealership</a>
+            <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars Dealership</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'djangoapp:about' %}">About Us</a>
+                        <a class="nav-link" href="{% url 'djangoapp:index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text me-2">Hello, {{ user.username }}!</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-danger" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-primary" href="{% url 'djangoapp:login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href="{% url 'djangoapp:register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
+
     <div class="container mt-5">
         <h1>About Best Cars Dealership</h1>
         <p>Welcome to Best Cars Dealership, your premier destination for high-quality new and used vehicles across the United States. We are dedicated to providing our customers with an exceptional car-buying experience, offering a wide selection of vehicles and unparalleled customer service.</p>
@@ -32,6 +53,7 @@
         <p>At Best Cars, we value integrity, customer satisfaction, and community engagement. Our team of experienced professionals is here to assist you every step of the way, from Browse our extensive inventory to securing financing and after-sales support.</p>
         <p>Thank you for choosing Best Cars Dealership. We look forward to serving you!</p>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
